@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+function toDou(x){
+	if(x<10){
+		return '0'+x;
+	}else{
+		return ''+x
+	}		
+}
+window.onload=function(){
+	function time(){
+		var oP=document.querySelector('p');	
+		var oDate=new Date();
+		//var time=oDate.getTime();
+		var Y=oDate.getFullYear();
+		var M=toDou(oDate.getMonth()+1);
+		var D=toDou(oDate.getDate());
+		var H=toDou(oDate.getHours());
+		var m=toDou(oDate.getMinutes());
+		var s=toDou(oDate.getSeconds());
+		var d=oDate.getDay();
+		oP.innerHTML='天亮电台为您报时，现在时间为：'+Y+'年'+M+'月'+D+'日 '+H+':'+m+':'+s+' 星期'+d;
+	}
+	time();
+	var timer=null;
+	clearInterval(timer);
+	timer=setInterval(function(){
+		time();
+	},1000);
+};
+</script>
+</head>
+
+<body>
+<p id="p">天亮电台为您报时，现在时间为：2016年04月14日 00:00:00 星期4</p>
+</body>
+</html>
