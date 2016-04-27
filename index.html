@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<link rel="stylesheet" href="css/base.css">
+<style>
+
+/*head*/
+a{ color:#333;}
+.head{min-width:1000px; height:80px; background:#000;}
+.head_in{width:1000px;height:80px; margin:0 auto; color:#fff;}
+.head_in li{ text-align:center; line-height:50px; padding-left:20px;padding-right:20px; height:50px; color:#000; position:relative;}
+.head_in li .posi1{ position:absolute;top:50px;left:-200px; width:800px; height:800px; background:#fff; z-index:2; }
+.head_in .my{text-align:center; line-height:50px; padding-left:10px;padding-right:10px; height:50px; margin-top:15px;  font-size:40px; font-weight:bold;}
+.head_in .list{ text-align:center; line-height:50px;  padding-left:10px;padding-right:10px; height:50px; margin-top:15px; background:#fff; border-radius:10px; margin-left:150px; cursor:pointer;}
+.head_in ul>li:hover{ background:#666; color:black;}
+/*banner*/
+.banner{ min-width:1000px; height:500px; background:#ccc;}
+.banner_in{ width:998px;height:500px;  border-left:1px solid #000; border-right:1px solid #000; margin:0 auto;}
+.ban_in_left{ width:30%;height:100%; background:#CFF}
+
+.ban_in_left p{ height:79px; padding-left:20px; font-size:40px; line-height:79px; border-bottom:1px solid #fff; box-shadow:inset 0 0 20px white;}
+.ban_in_left ul{ width:90%; margin:0 auto;}
+.ban_in_left li{ height:51.5px; border-bottom:1px solid #ccc; line-height:51.5px; padding-left:30px;}
+.ban_in_right{ width:calc( 70% - 1px );height:100%; position:relative;border-left:1px solid #000;}
+.ban_in_right .posi{ position:absolute; bottom:30px; right:50px;}
+.ban_in_right .posi span{ float:left; width:30px; height:20px; cursor:pointer; background:#0FF; text-align:center; margin:1px;}
+.ban_in_right .prev{ height:20px; width:20px; text-align:center; line-height:20px; background:#0FF; opacity:0.8; position:absolute; top:50%; margin-top:-10px; left:20px; cursor:pointer;}
+.ban_in_right .next{ height:20px; width:20px; text-align:center; line-height:20px; background:#0FF; opacity:0.8; position:absolute; top:50%; margin-top:-10px; right:20px; cursor:pointer;}
+.ban_in_right .img_box div img{ width:100%; height:500px;}
+.ban_in_right .img_box div{ display:none;}
+.ban_in_right .img_box div.active{display:block;  }
+.ban_in_right span.active{ background:#09F;}
+</style>
+<script>
+window.onload=function(){
+	function tab(){
+		for(var i=0;i<aDiv.length;i++){
+			aDiv[i].className='';
+			aSp[i].className='';
+		}
+		aSp[iNow].className='active';
+		aDiv[iNow].className='active';	
+
+	}
+	var oPrev=document.querySelector('.ban_in_right .prev');
+	var oNext=document.querySelector('.ban_in_right .next');
+	var oTurn=document.querySelector('.ban_in_right');
+	var oImgBox=document.querySelector('.ban_in_right .img_box');
+	var aDiv=oImgBox.getElementsByTagName('div');	
+	var aSp=oTurn.getElementsByTagName('span');
+	var iNow=0;
+	for(var i=0;i<aSp.length;i++){
+		aSp[i].index=i;
+		aSp[i].onclick=function(){
+			iNow=this.index;
+			tab();
+		};	
+	}
+	oNext.onclick=function(){
+		iNow++;
+		if(iNow==aSp.length){
+			iNow=0;	
+		}
+		tab();
+	};	
+	oPrev.onclick=function(){
+		iNow--;
+		if(iNow==-1){
+			iNow=aSp.length-1;	
+		}
+			for(var i=0;i<aDiv.length;i++){
+				aDiv[i].className='';
+				aSp[i].className='';
+			}
+			aSp[iNow].className='active';
+			aDiv[iNow].className='active';	
+	};
+	var timer=null;
+	clearInterval(timer);
+	timer=setInterval(function(){
+		iNow++;
+		if(iNow==aSp.length){
+			iNow=0;	
+		}
+		tab();
+	},1000);	
+	oTurn.onmouseover=function(){
+		clearInterval(timer);
+	};
+	oTurn.onmouseout=function(){
+	timer=setInterval(function(){
+		iNow++;
+		if(iNow==aSp.length){
+			iNow=0;	
+		}
+		tab();
+	},1000);	
+	};
+};
+</script>
+</head>
+
+<body>
+<!--head-->
+    <div class="head">
+    	<div class="head_in clear">
+        	<div class="fl my">My Html</div>
+            <ul class="list fl">
+            	<li class="fl">主页</li>
+            	<li class="fl">个人简介<div class="posi1"></div></li>
+            	<li class="fl">作品介绍<div class="posi"></div></li>
+            	<li class="fl">作品介绍<div class="posi"></div></li>
+            	<li class="fl">作品介绍<div class="posi"></div></li>
+            </ul>
+        </div>
+    </div>
+<!--banner-->
+    <div class="banner">
+    	<div class="banner_in clear">
+        	<div class="ban_in_left fl">
+            	<p>List</p>
+            	<ul class="ban_left_list">
+                	<li><a href="javascript:;">选项卡</a></li>
+                	<li><a href="javascript:;">拖拽</a></li>
+                	<li><a href="javascript:;">倒计时</a></li>
+                	<li><a href="javascript:;">双色球</a></li>
+                	<li><a href="javascript:;">瀑布流</a></li>
+                	<li><a href="javascript:;">简单运动</a></li>
+                	<li><a href="javascript:;"></a></li>
+                	<li><a href="javascript:;"></a></li>
+                </ul>
+            </div>
+        	<div class="ban_in_right fl">
+            	<div class="img_box">
+                    <div class="active"><img src="img/1.jpg" /></div>
+                    <div><img src="img/2.jpg" /></div>
+                    <div><img src="img/3.jpg" /></div>
+                </div>
+                <div class="posi clear">
+                	<span class="active">1</span>
+                	<span>2</span>
+                	<span>3</span>
+                </div>
+                <b class="prev">&lt;</b>
+                <b class="next">&gt;</b>
+            </div>
+        </div>
+    </div>
+<!--content-->
+	<div class="content">
+    
+    </div>
+</body>
+</html>
